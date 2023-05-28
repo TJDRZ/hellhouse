@@ -1,0 +1,18 @@
+#gameboard {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+#killer-start, #player-start {
+    flex-basis: 15%;
+}
+
+#house {
+    flex-basis: 85%;
+}
+
+div {
+    border: solid black 1px;
+}
