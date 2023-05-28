@@ -1,13 +1,27 @@
-const killerStart = document.querySelector("#killer-start");
-const playerStart = document.querySelector("#player-start");
+const killerStart = document.querySelector("#killer-start")!;
+const playerStart = document.querySelector("#player-start")!;
 const house = document.querySelector("#house")!;
+const killer = document.querySelector("#killer")!;
+const player = document.querySelector("#player")!;
 
-for (let i = 1; i <= 6; i++) {
-  const room = document.createElement("div");
-  room.className = i.toString();
-  house.append(room);
+const grid = [];
+
+// The more columns there are, it will be harder for the player (longer to get to the top). The more rows there are, it will be harder for the killer (more guesses around to find player) 3 and 3 are a good, fair start to get a stable app
+
+for (let i = 1; i <= 3; i++) {
+  for (let j = 1; j <= 3; j++) {
+    const room = document.createElement("div");
+    room.className = "room";
+    room.addEventListener("click", () => moveCharacter(room));
+    house.append(room);
+  }
 }
 
-let killerPosition = 7;
-let playerPosition = 0;
-
+function moveCharacter(room: HTMLDivElement) {
+  if (killer.parentElement === room) {
+    // lose game
+  } else {
+    player.parentElement?.removeChild(player);
+    room.appendChild(player);
+  }
+}
