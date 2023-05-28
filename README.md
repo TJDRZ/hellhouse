@@ -16,4 +16,4 @@
 - Player and killer can move forward and backward throughout the columns (perhaps a reasoning given to do so, such as an alert was activated)
 - Multiple columns instead of the starting 2 (perhaps a middle hallway with full vision down the lane)
 
-!(Game Layout Image)[readme-image.png]
+![Game Layout Image](readme-image.png)
