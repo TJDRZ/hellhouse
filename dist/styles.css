@@ -1,20 +1,26 @@
 #gameboard {
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
-#killer-start, #player-start {
-    flex-basis: 15%;
+#killer-start,
+#player-start {
+  flex-basis: 15%;
 }
 
 #house {
-    flex-basis: 85%;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+  flex-basis: 85%;
+  display: flex;
+  flex-wrap: wrap-reverse;
+}
+
+#house > div {
+  flex-basis: 50%;
+  box-sizing: border-box;
 }
 
 div {
-    border: solid black 1px;
+  border: solid black 1px;
 }
