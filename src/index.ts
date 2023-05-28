@@ -8,3 +8,6 @@ for (let i = 1; i <= 6; i++) {
   house.append(room);
 }
 
+let killerPosition = 7;
+let playerPosition = 0;
+
