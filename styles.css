@@ -4,19 +4,9 @@ div {
   border: solid black 1px;
 }
 
-#gameboard {
+#house {
   width: 100vw;
   height: 100vh;
-  flex-direction: column;
-}
-
-#killer-start,
-#player-start {
-  flex-basis: 15%;
-}
-
-#house {
-  flex-basis: 85%;
   flex-wrap: wrap;
 }
 
