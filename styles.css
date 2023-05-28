@@ -21,7 +21,7 @@ div {
   flex-wrap: wrap-reverse;
 }
 
-#house > div {
+.room {
   flex-basis: 50%;
   box-sizing: border-box;
 }
