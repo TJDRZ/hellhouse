@@ -43,9 +43,8 @@ function movePlayer(x, y, room) {
         playerPosition = [x, y];
         (_a = player.parentElement) === null || _a === void 0 ? void 0 : _a.removeChild(player);
         room.appendChild(player);
-        killCheck();
         moveKiller();
-        killCheck();
+        gameCheck();
     }
 }
 function getRandomInt(max) {
@@ -70,10 +69,18 @@ function moveKiller() {
     (_b = document
         .querySelector(`.r${killerPosition[0]}${killerPosition[1]}`)) === null || _b === void 0 ? void 0 : _b.appendChild(killer);
 }
-function killCheck() {
+function gameCheck() {
+    let gameOver = false;
     if (killerPosition[0] === playerPosition[0] &&
         killerPosition[1] === playerPosition[1]) {
-        console.log("End game");
+        console.log("You Died");
+        gameOver = true;
+    }
+    else if (playerPosition[0] === 0 && playerPosition[1] === 1) {
+        console.log("You Escaped");
+        gameOver = true;
+    }
+    if (gameOver) {
         deleteHouse();
         createHouse();
     }
