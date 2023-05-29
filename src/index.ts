@@ -24,7 +24,10 @@ function createHouse() {
       house.append(room);
       grid[x].push(y);
       if (room.classList.contains("r01")) room.append(killer);
-      if (room.classList.contains("r21")) room.append(player);
+      if (room.classList.contains("r21")) {
+        room.append(player);
+        room.classList.add("active-room");
+      }
     }
   }
 }
@@ -43,8 +46,10 @@ function movePlayer(x: number, y: number, room: HTMLDivElement) {
       (playerPosition[0] === x + 1 || playerPosition[0] === x - 1))
   ) {
     playerPosition = [x, y];
+    player.parentElement?.classList.remove("active-room");
     player.parentElement?.removeChild(player);
     room.appendChild(player);
+    room.classList.add("active-room");
     moveKiller();
     gameCheck();
   }

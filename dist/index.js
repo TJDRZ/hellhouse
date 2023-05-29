@@ -24,8 +24,10 @@ function createHouse() {
             grid[x].push(y);
             if (room.classList.contains("r01"))
                 room.append(killer);
-            if (room.classList.contains("r21"))
+            if (room.classList.contains("r21")) {
                 room.append(player);
+                room.classList.add("active-room");
+            }
         }
     }
 }
@@ -35,14 +37,16 @@ function deleteHouse() {
     }
 }
 function movePlayer(x, y, room) {
-    var _a;
+    var _a, _b;
     if ((playerPosition[0] === x &&
         (playerPosition[1] === y + 1 || playerPosition[1] === y - 1)) ||
         (playerPosition[1] === y &&
             (playerPosition[0] === x + 1 || playerPosition[0] === x - 1))) {
         playerPosition = [x, y];
-        (_a = player.parentElement) === null || _a === void 0 ? void 0 : _a.removeChild(player);
+        (_a = player.parentElement) === null || _a === void 0 ? void 0 : _a.classList.remove("active-room");
+        (_b = player.parentElement) === null || _b === void 0 ? void 0 : _b.removeChild(player);
         room.appendChild(player);
+        room.classList.add("active-room");
         moveKiller();
         gameCheck();
     }
