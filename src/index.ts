@@ -45,9 +45,8 @@ function movePlayer(x: number, y: number, room: HTMLDivElement) {
     playerPosition = [x, y];
     player.parentElement?.removeChild(player);
     room.appendChild(player);
-    killCheck();
     moveKiller();
-    killCheck();
+    gameCheck();
   }
 }
 
@@ -77,12 +76,19 @@ function moveKiller() {
     ?.appendChild(killer);
 }
 
-function killCheck() {
+function gameCheck() {
+  let gameOver = false;
   if (
     killerPosition[0] === playerPosition[0] &&
     killerPosition[1] === playerPosition[1]
   ) {
-    console.log("End game");
+    console.log("You Died");
+    gameOver = true;
+  } else if (playerPosition[0] === 0 && playerPosition[1] === 1) {
+    console.log("You Escaped");
+    gameOver = true;
+  }
+  if (gameOver) {
     deleteHouse();
     createHouse();
   }
