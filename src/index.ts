@@ -1,4 +1,8 @@
 const house = document.querySelector("#house")!;
+const dialog = document.querySelector("#dialog") as HTMLDialogElement;
+const dialogText = document.querySelector(
+  "#dialog-text"
+) as HTMLParagraphElement;
 const killer = document.createElement("div");
 killer.id = "killer";
 killer.innerText = "K";
@@ -87,10 +91,12 @@ function gameCheck() {
     killerPosition[0] === playerPosition[0] &&
     killerPosition[1] === playerPosition[1]
   ) {
-    console.log("You Died");
+    dialog.showModal();
+    dialogText.innerText = "You Died";
     gameOver = true;
   } else if (playerPosition[0] === 0 && playerPosition[1] === 1) {
-    console.log("You Escaped");
+    dialog.showModal();
+    dialogText.innerText = "You Escaped";
     gameOver = true;
   }
   if (gameOver) {
