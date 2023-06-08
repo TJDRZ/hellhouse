@@ -92,11 +92,11 @@ function gameCheck() {
     killerPosition[1] === playerPosition[1]
   ) {
     dialog.showModal();
-    dialogText.innerText = "You Died";
+    dialogText.innerText = "You Died!";
     gameOver = true;
   } else if (playerPosition[0] === 0 && playerPosition[1] === 1) {
     dialog.showModal();
-    dialogText.innerText = "You Escaped";
+    dialogText.innerText = "You Escaped!";
     gameOver = true;
   }
   if (gameOver) {
