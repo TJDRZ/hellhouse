@@ -14,6 +14,8 @@ let grid: number[][];
 let killerPosition: number[];
 let playerPosition: number[];
 
+dialog.showModal(); //always on - for styling the modal
+
 function createHouse() {
   grid = [];
   killerPosition = [0, 1];
