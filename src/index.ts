@@ -32,6 +32,11 @@ function createHouse() {
       }
     }
   }
+  dialog.addEventListener("submit", () => {
+    dialog.classList.remove(...dialog.classList);
+    deleteHouse();
+    createHouse();
+  });
 }
 
 function deleteHouse() {
@@ -84,22 +89,16 @@ function moveKiller() {
 }
 
 function gameCheck() {
-  let gameOver = false;
   if (
     killerPosition[0] === playerPosition[0] &&
     killerPosition[1] === playerPosition[1]
   ) {
+    dialog.classList.add("diedDialog");
     dialog.showModal();
     dialogText.innerText = "You Died!";
-    gameOver = true;
   } else if (playerPosition[0] === 0 && playerPosition[1] === 1) {
     dialog.showModal();
     dialogText.innerText = "You Escaped!";
-    gameOver = true;
-  }
-  if (gameOver) {
-    deleteHouse();
-    createHouse();
   }
 }
 
