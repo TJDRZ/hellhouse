@@ -5,10 +5,8 @@ const dialogText = document.querySelector(
 ) as HTMLParagraphElement;
 const killer = document.createElement("div");
 killer.id = "killer";
-killer.innerText = "K";
 const player = document.createElement("div");
 player.id = "player";
-player.innerText = "P";
 
 let grid: number[][];
 let killerPosition: number[];

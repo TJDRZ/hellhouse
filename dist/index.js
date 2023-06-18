@@ -4,14 +4,11 @@ const dialog = document.querySelector("#dialog");
 const dialogText = document.querySelector("#dialog-text");
 const killer = document.createElement("div");
 killer.id = "killer";
-killer.innerText = "K";
 const player = document.createElement("div");
 player.id = "player";
-player.innerText = "P";
 let grid;
 let killerPosition;
 let playerPosition;
-dialog.showModal();
 function createHouse() {
     grid = [];
     killerPosition = [0, 1];

@@ -20,14 +20,20 @@ div {
   box-shadow: none;
 }
 
-#killer,
+#killer {
+  align-self: center;
+  width: 5rem;
+  height: 5rem;
+  background-image: url("./skeleton.png");
+  background-size: 100% 100%;
+}
+
 #player {
   align-self: center;
-  width: 2rem;
-  height: 2rem;
-  color: aqua;
-  border: solid aqua 2px;
-  border-radius: 50%;
+  width: 5rem;
+  height: 5rem;
+  background-image: url("./player.png");
+  background-size: 100% 100%;
 }
 
 #dialog {
