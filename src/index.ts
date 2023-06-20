@@ -1,3 +1,6 @@
+import './styles/reset.css';
+import './styles/styles.css';
+
 const house = document.querySelector('#house')!;
 const dialog = document.querySelector('#dialog') as HTMLDialogElement;
 const dialogText = document.querySelector(
