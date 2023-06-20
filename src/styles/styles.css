@@ -1,18 +1,17 @@
 div {
-  display: flex;
-  justify-content: center;
+  display: grid;
+  background-size: 100% 100%;
 }
 
 #house {
   width: 100vw;
   height: 100vh;
-  flex-wrap: wrap;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
 }
 
 .room {
-  flex-basis: 33.33%;
-  background-image: url("./assets/hellhouse-room.png");
-  background-size: 100% 100%;
+  background-image: url("../assets/hellhouse-room.png");
   box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.9);
 }
 
@@ -21,19 +20,17 @@ div {
 }
 
 #killer {
-  align-self: center;
+  place-self: center;
   width: 5rem;
   height: 5rem;
-  background-image: url("./assets/skeleton.png");
-  background-size: 100% 100%;
+  background-image: url("../assets/skeleton.png");
 }
 
 #player {
-  align-self: center;
+  place-self: center;
   width: 5rem;
   height: 5rem;
-  background-image: url("./assets/player.png");
-  background-size: 100% 100%;
+  background-image: url("../assets/player.png");
 }
 
 #dialog {
@@ -54,6 +51,6 @@ div {
 }
 
 .diedDialog::backdrop {
-  background-image: url("./assets/BloodOverlay.png");
+  background-image: url("../assets/BloodOverlay.png");
   background-size: 100% 100%;
 }

@@ -1,64 +1,31 @@
-const house = document.querySelector("#house")!;
-const dialog = document.querySelector("#dialog") as HTMLDialogElement;
+import './styles/reset.css';
+import './styles/styles.css';
+
+const house = document.querySelector('#house')!;
+const dialog = document.querySelector('#dialog') as HTMLDialogElement;
 const dialogText = document.querySelector(
-  "#dialog-text"
+  '#dialog-text',
 ) as HTMLParagraphElement;
-const killer = document.createElement("div");
-killer.id = "killer";
-const player = document.createElement("div");
-player.id = "player";
+const killer = document.createElement('div');
+killer.id = 'killer';
+const player = document.createElement('div');
+player.id = 'player';
 
 let grid: number[][];
 let killerPosition: number[];
 let playerPosition: number[];
 
-function createHouse() {
-  grid = [];
-  killerPosition = [0, 1];
-  playerPosition = [2, 1];
-  for (let x = 0; x <= 2; x++) {
-    grid.push([]);
-    for (let y = 0; y <= 2; y++) {
-      const room = document.createElement("div");
-      room.classList.add("room");
-      room.classList.add(`r${x}${y}`);
-      room.addEventListener("click", () => movePlayer(x, y, room));
-      house.append(room);
-      grid[x].push(y);
-      if (room.classList.contains("r01")) room.append(killer);
-      if (room.classList.contains("r21")) {
-        room.append(player);
-        room.classList.add("active-room");
-      }
-    }
-  }
-  dialog.addEventListener("submit", () => {
-    dialog.classList.remove(...dialog.classList);
-    deleteHouse();
-    createHouse();
-  });
-}
-
-function deleteHouse() {
-  while (house.firstChild) {
-    house.removeChild(house.firstChild);
-  }
-}
-
-function movePlayer(x: number, y: number, room: HTMLDivElement) {
+function gameCheck() {
   if (
-    (playerPosition[0] === x &&
-      (playerPosition[1] === y + 1 || playerPosition[1] === y - 1)) ||
-    (playerPosition[1] === y &&
-      (playerPosition[0] === x + 1 || playerPosition[0] === x - 1))
+    killerPosition[0] === playerPosition[0] &&
+    killerPosition[1] === playerPosition[1]
   ) {
-    playerPosition = [x, y];
-    player.parentElement?.classList.remove("active-room");
-    player.parentElement?.removeChild(player);
-    room.appendChild(player);
-    room.classList.add("active-room");
-    moveKiller();
-    gameCheck();
+    dialog.classList.add('diedDialog');
+    dialog.showModal();
+    dialogText.innerText = 'You Died!';
+  } else if (playerPosition[0] === 0 && playerPosition[1] === 1) {
+    dialog.showModal();
+    dialogText.innerText = 'You Escaped!';
   }
 }
 
@@ -88,18 +55,54 @@ function moveKiller() {
     ?.appendChild(killer);
 }
 
-function gameCheck() {
+function movePlayer(x: number, y: number, room: HTMLDivElement) {
   if (
-    killerPosition[0] === playerPosition[0] &&
-    killerPosition[1] === playerPosition[1]
+    (playerPosition[0] === x &&
+      (playerPosition[1] === y + 1 || playerPosition[1] === y - 1)) ||
+    (playerPosition[1] === y &&
+      (playerPosition[0] === x + 1 || playerPosition[0] === x - 1))
   ) {
-    dialog.classList.add("diedDialog");
-    dialog.showModal();
-    dialogText.innerText = "You Died!";
-  } else if (playerPosition[0] === 0 && playerPosition[1] === 1) {
-    dialog.showModal();
-    dialogText.innerText = "You Escaped!";
+    playerPosition = [x, y];
+    player.parentElement?.classList.remove('active-room');
+    player.parentElement?.removeChild(player);
+    room.appendChild(player);
+    room.classList.add('active-room');
+    moveKiller();
+    gameCheck();
   }
+}
+
+function deleteHouse() {
+  while (house.firstChild) {
+    house.removeChild(house.firstChild);
+  }
+}
+
+function createHouse() {
+  grid = [];
+  killerPosition = [0, 1];
+  playerPosition = [2, 1];
+  for (let x = 0; x <= 2; x += 1) {
+    grid.push([]);
+    for (let y = 0; y <= 2; y += 1) {
+      const room = document.createElement('div');
+      room.classList.add('room');
+      room.classList.add(`r${x}${y}`);
+      room.addEventListener('click', () => movePlayer(x, y, room));
+      house.append(room);
+      grid[x].push(y);
+      if (room.classList.contains('r01')) room.append(killer);
+      if (room.classList.contains('r21')) {
+        room.append(player);
+        room.classList.add('active-room');
+      }
+    }
+  }
+  dialog.addEventListener('submit', () => {
+    dialog.classList.remove(...dialog.classList);
+    deleteHouse();
+    createHouse();
+  });
 }
 
 createHouse();
