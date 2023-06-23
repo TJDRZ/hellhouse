@@ -146,7 +146,67 @@ eval("\n\n/* istanbul ignore next  */\nfunction styleTagTransform(css, styleElem
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _styles_reset_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./styles/reset.css */ \"./src/styles/reset.css\");\n/* harmony import */ var _styles_styles_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./styles/styles.css */ \"./src/styles/styles.css\");\n\n\nconst house = document.querySelector('#house');\nconst dialog = document.querySelector('#dialog');\nconst dialogText = document.querySelector('#dialog-text');\nconst killer = document.createElement('div');\nkiller.id = 'killer';\nconst player = document.createElement('div');\nplayer.id = 'player';\nlet grid;\nlet killerPosition;\nlet playerPosition;\nfunction gameCheck() {\n    if (killerPosition[0] === playerPosition[0] &&\n        killerPosition[1] === playerPosition[1]) {\n        dialog.classList.add('diedDialog');\n        dialog.showModal();\n        dialogText.innerText = 'You Died!';\n    }\n    else if (playerPosition[0] === 0 && playerPosition[1] === 1) {\n        dialog.showModal();\n        dialogText.innerText = 'You Escaped!';\n    }\n}\nfunction getRandomInt(max) {\n    return Math.floor(Math.random() * max);\n}\nfunction moveKiller() {\n    var _a, _b;\n    const row = getRandomInt(grid[0].length);\n    const column = getRandomInt(grid.length);\n    if (killerPosition[0] !== row &&\n        (killerPosition[0] === row + 1 || killerPosition[0] === row - 1)) {\n        killerPosition = [row, killerPosition[1]];\n    }\n    else if (killerPosition[1] !== column &&\n        (killerPosition[1] === column + 1 || killerPosition[1] === column - 1)) {\n        killerPosition = [killerPosition[0], column];\n    }\n    else {\n        moveKiller();\n    }\n    (_a = killer.parentElement) === null || _a === void 0 ? void 0 : _a.removeChild(killer);\n    (_b = document\n        .querySelector(`.r${killerPosition[0]}${killerPosition[1]}`)) === null || _b === void 0 ? void 0 : _b.appendChild(killer);\n}\nfunction movePlayer(x, y, room) {\n    var _a, _b;\n    if ((playerPosition[0] === x &&\n        (playerPosition[1] === y + 1 || playerPosition[1] === y - 1)) ||\n        (playerPosition[1] === y &&\n            (playerPosition[0] === x + 1 || playerPosition[0] === x - 1))) {\n        playerPosition = [x, y];\n        (_a = player.parentElement) === null || _a === void 0 ? void 0 : _a.classList.remove('active-room');\n        (_b = player.parentElement) === null || _b === void 0 ? void 0 : _b.removeChild(player);\n        room.appendChild(player);\n        room.classList.add('active-room');\n        moveKiller();\n        gameCheck();\n    }\n}\nfunction deleteHouse() {\n    while (house.firstChild) {\n        house.removeChild(house.firstChild);\n    }\n}\nfunction createHouse() {\n    grid = [];\n    killerPosition = [0, 1];\n    playerPosition = [2, 1];\n    for (let x = 0; x <= 2; x += 1) {\n        grid.push([]);\n        for (let y = 0; y <= 2; y += 1) {\n            const room = document.createElement('div');\n            room.classList.add('room');\n            room.classList.add(`r${x}${y}`);\n            room.addEventListener('click', () => movePlayer(x, y, room));\n            house.append(room);\n            grid[x].push(y);\n            if (room.classList.contains('r01'))\n                room.append(killer);\n            if (room.classList.contains('r21')) {\n                room.append(player);\n                room.classList.add('active-room');\n            }\n        }\n    }\n    dialog.addEventListener('submit', () => {\n        dialog.classList.remove(...dialog.classList);\n        deleteHouse();\n        createHouse();\n    });\n}\ncreateHouse();\n\n\n//# sourceURL=webpack://hellhouse/./src/index.ts?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _styles_reset_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./styles/reset.css */ \"./src/styles/reset.css\");\n/* harmony import */ var _styles_styles_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./styles/styles.css */ \"./src/styles/styles.css\");\n/* harmony import */ var _scripts_createHouse__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./scripts/createHouse */ \"./src/scripts/createHouse.ts\");\n\n\n\n(0,_scripts_createHouse__WEBPACK_IMPORTED_MODULE_2__[\"default\"])();\n\n\n//# sourceURL=webpack://hellhouse/./src/index.ts?");
+
+/***/ }),
+
+/***/ "./src/scripts/createHouse.ts":
+/*!************************************!*\
+  !*** ./src/scripts/createHouse.ts ***!
+  \************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ createHouse)\n/* harmony export */ });\n/* harmony import */ var _deleteHouse__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./deleteHouse */ \"./src/scripts/deleteHouse.ts\");\n/* harmony import */ var _movePlayer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./movePlayer */ \"./src/scripts/movePlayer.ts\");\n\n\nconst house = document.querySelector('#house');\nconst dialog = document.querySelector('#dialog');\nconst killer = document.createElement('div');\nkiller.id = 'killer';\nconst player = document.createElement('div');\nplayer.id = 'player';\nlet grid;\nlet killerPosition;\nlet playerPosition;\nfunction createHouse() {\n    grid = [];\n    killerPosition = [0, 1];\n    playerPosition = [2, 1]; // if we can get rid of this we can avoid hardcoding positions + get help down the line of reassigning function parameters. The other files should also be pure functions - make them take something in and return a value and then the parent file (this file?) that calls them is the one that mutates the variable. Maybe we make some global variable that is a calc and that will also affect the x & y in the loops below for dynamic board creation.\n    for (let x = 0; x <= 2; x += 1) {\n        grid.push([]);\n        for (let y = 0; y <= 2; y += 1) {\n            const room = document.createElement('div');\n            room.classList.add('room');\n            room.classList.add(`r${x}${y}`);\n            room.addEventListener('click', () => (0,_movePlayer__WEBPACK_IMPORTED_MODULE_1__[\"default\"])(x, y, room, grid, player, playerPosition, killer, killerPosition));\n            house.append(room);\n            grid[x].push(y);\n            if (room.classList.contains('r01'))\n                room.append(killer);\n            if (room.classList.contains('r21')) {\n                room.append(player);\n                room.classList.add('active-room');\n            }\n        }\n    }\n    dialog.addEventListener('submit', () => {\n        dialog.classList.remove(...dialog.classList);\n        (0,_deleteHouse__WEBPACK_IMPORTED_MODULE_0__[\"default\"])();\n        createHouse();\n    });\n}\n\n\n//# sourceURL=webpack://hellhouse/./src/scripts/createHouse.ts?");
+
+/***/ }),
+
+/***/ "./src/scripts/deleteHouse.ts":
+/*!************************************!*\
+  !*** ./src/scripts/deleteHouse.ts ***!
+  \************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ deleteHouse)\n/* harmony export */ });\nconst house = document.querySelector('#house');\nfunction deleteHouse() {\n    while (house.firstChild) {\n        house.removeChild(house.firstChild);\n    }\n}\n\n\n//# sourceURL=webpack://hellhouse/./src/scripts/deleteHouse.ts?");
+
+/***/ }),
+
+/***/ "./src/scripts/gameCheck.ts":
+/*!**********************************!*\
+  !*** ./src/scripts/gameCheck.ts ***!
+  \**********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ gameCheck)\n/* harmony export */ });\nconst dialog = document.querySelector('#dialog');\nconst dialogText = document.querySelector('#dialog-text');\nfunction gameCheck(playerPosition, killerPosition) {\n    if (killerPosition[0] === playerPosition[0] &&\n        killerPosition[1] === playerPosition[1]) {\n        dialog.classList.add('diedDialog');\n        dialog.showModal();\n        dialogText.innerText = 'You Died!';\n    }\n    else if (playerPosition[0] === 0 && playerPosition[1] === 1) {\n        dialog.showModal();\n        dialogText.innerText = 'You Escaped!';\n    }\n}\n\n\n//# sourceURL=webpack://hellhouse/./src/scripts/gameCheck.ts?");
+
+/***/ }),
+
+/***/ "./src/scripts/getRandomInt.ts":
+/*!*************************************!*\
+  !*** ./src/scripts/getRandomInt.ts ***!
+  \*************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ getRandomInt)\n/* harmony export */ });\nfunction getRandomInt(max) {\n    return Math.floor(Math.random() * max);\n}\n\n\n//# sourceURL=webpack://hellhouse/./src/scripts/getRandomInt.ts?");
+
+/***/ }),
+
+/***/ "./src/scripts/moveKiller.ts":
+/*!***********************************!*\
+  !*** ./src/scripts/moveKiller.ts ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ moveKiller)\n/* harmony export */ });\n/* harmony import */ var _getRandomInt__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./getRandomInt */ \"./src/scripts/getRandomInt.ts\");\n\nfunction moveKiller(grid, killer, killerPosition) {\n    var _a, _b;\n    const row = (0,_getRandomInt__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(grid[0].length);\n    const column = (0,_getRandomInt__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(grid.length);\n    if (killerPosition[0] !== row &&\n        (killerPosition[0] === row + 1 || killerPosition[0] === row - 1)) {\n        killerPosition = [row, killerPosition[1]];\n    }\n    else if (killerPosition[1] !== column &&\n        (killerPosition[1] === column + 1 || killerPosition[1] === column - 1)) {\n        killerPosition = [killerPosition[0], column];\n    }\n    else {\n        moveKiller(grid, killer, killerPosition);\n    }\n    (_a = killer.parentElement) === null || _a === void 0 ? void 0 : _a.removeChild(killer);\n    (_b = document\n        .querySelector(`.r${killerPosition[0]}${killerPosition[1]}`)) === null || _b === void 0 ? void 0 : _b.appendChild(killer);\n}\n\n\n//# sourceURL=webpack://hellhouse/./src/scripts/moveKiller.ts?");
+
+/***/ }),
+
+/***/ "./src/scripts/movePlayer.ts":
+/*!***********************************!*\
+  !*** ./src/scripts/movePlayer.ts ***!
+  \***********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ movePlayer)\n/* harmony export */ });\n/* harmony import */ var _moveKiller__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./moveKiller */ \"./src/scripts/moveKiller.ts\");\n/* harmony import */ var _gameCheck__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./gameCheck */ \"./src/scripts/gameCheck.ts\");\n\n\nfunction movePlayer(x, y, room, grid, player, playerPosition, killer, killerPosition) {\n    var _a, _b;\n    if ((playerPosition[0] === x &&\n        (playerPosition[1] === y + 1 || playerPosition[1] === y - 1)) ||\n        (playerPosition[1] === y &&\n            (playerPosition[0] === x + 1 || playerPosition[0] === x - 1))) {\n        playerPosition = [x, y];\n        (_a = player.parentElement) === null || _a === void 0 ? void 0 : _a.classList.remove('active-room');\n        (_b = player.parentElement) === null || _b === void 0 ? void 0 : _b.removeChild(player);\n        room.appendChild(player);\n        room.classList.add('active-room');\n        (0,_moveKiller__WEBPACK_IMPORTED_MODULE_0__[\"default\"])(grid, killer, killerPosition);\n        (0,_gameCheck__WEBPACK_IMPORTED_MODULE_1__[\"default\"])(playerPosition, killerPosition);\n    }\n}\n\n\n//# sourceURL=webpack://hellhouse/./src/scripts/movePlayer.ts?");
 
 /***/ }),
 
