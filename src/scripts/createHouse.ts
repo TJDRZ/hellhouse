@@ -1,5 +1,7 @@
 import deleteHouse from './deleteHouse';
 import movePlayer from './movePlayer';
+import moveKiller from './moveKiller';
+import gameCheck from './gameCheck';
 
 const house = document.querySelector('#house')!;
 const dialog = document.querySelector('#dialog') as HTMLDialogElement;
@@ -8,34 +10,41 @@ killer.id = 'killer';
 const player = document.createElement('div');
 player.id = 'player';
 
-let grid: number[][];
-let killerPosition: number[];
-let playerPosition: number[];
+const grid: number[][] = [];
+const killerPosition: number[] = [];
+const playerPosition: number[] = [];
 
 export default function createHouse() {
-  grid = [];
-  killerPosition = [0, 1];
-  playerPosition = [2, 1]; // if we can get rid of this we can avoid hardcoding positions + get help down the line of reassigning function parameters. The other files should also be pure functions - make them take something in and return a value and then the parent file (this file?) that calls them is the one that mutates the variable. Maybe we make some global variable that is a calc and that will also affect the x & y in the loops below for dynamic board creation.
+  killerPosition.push(0); // modify these numbers to be a dynamic # based off map size picked (don't forget to modify the class added below to start append the killer and player)
+  killerPosition.push(1);
+  playerPosition.push(2);
+  playerPosition.push(1);
+
   for (let x = 0; x <= 2; x += 1) {
     grid.push([]);
     for (let y = 0; y <= 2; y += 1) {
+      grid[x].push(y);
       const room = document.createElement('div');
       room.classList.add('room');
       room.classList.add(`r${x}${y}`);
-      room.addEventListener('click', () =>
-        movePlayer(
+      room.addEventListener('click', () => {
+        const newPlayerPosition = movePlayer(
           x,
           y,
           room,
-          grid,
           player,
           playerPosition,
-          killer,
-          killerPosition,
-        ),
-      );
+        );
+        const newKillerPosition = moveKiller(grid, killer, killerPosition);
+        while (playerPosition.length > 0) playerPosition.pop();
+        while (killerPosition.length > 0) killerPosition.pop();
+        playerPosition.push(newPlayerPosition[0]);
+        playerPosition.push(newPlayerPosition[1]);
+        killerPosition.push(newKillerPosition[0]);
+        killerPosition.push(newKillerPosition[1]);
+        gameCheck(playerPosition, killerPosition);
+      });
       house.append(room);
-      grid[x].push(y);
       if (room.classList.contains('r01')) room.append(killer);
       if (room.classList.contains('r21')) {
         room.append(player);
@@ -43,9 +52,10 @@ export default function createHouse() {
       }
     }
   }
-  dialog.addEventListener('submit', () => {
-    dialog.classList.remove(...dialog.classList);
-    deleteHouse();
-    createHouse();
-  });
 }
+// we need to create another dialog or modify this to be the house size picker at begin of game and then turn to this. prob easier to just make 2 separate dialogs. Add this to a new file also, call it "resultDialog" or something
+dialog.addEventListener('submit', () => {
+  dialog.classList.remove(...dialog.classList);
+  deleteHouse();
+  createHouse();
+});
