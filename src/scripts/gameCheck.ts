@@ -1,6 +1,8 @@
-const dialog = document.querySelector('#dialog') as HTMLDialogElement;
-const dialogText = document.querySelector(
-  '#dialog-text',
+const resultDialog = document.querySelector(
+  '#result-dialog',
+) as HTMLDialogElement;
+const resultDialogText = document.querySelector(
+  '#result-dialog-text',
 ) as HTMLParagraphElement;
 
 export default function gameCheck(
@@ -11,11 +13,11 @@ export default function gameCheck(
     killerPosition[0] === playerPosition[0] &&
     killerPosition[1] === playerPosition[1]
   ) {
-    dialog.classList.add('diedDialog');
-    dialog.showModal();
-    dialogText.innerText = 'You Died!';
+    resultDialog.classList.add('diedDialog');
+    resultDialog.showModal();
+    resultDialogText.innerText = 'You Died!';
   } else if (playerPosition[0] === 0 && playerPosition[1] === 1) {
-    dialog.showModal();
-    dialogText.innerText = 'You Escaped!';
+    resultDialog.showModal();
+    resultDialogText.innerText = 'You Escaped!';
   }
 }

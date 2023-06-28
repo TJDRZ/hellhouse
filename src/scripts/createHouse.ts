@@ -4,7 +4,9 @@ import moveKiller from './moveKiller';
 import gameCheck from './gameCheck';
 
 const house = document.querySelector('#house')!;
-const dialog = document.querySelector('#dialog') as HTMLDialogElement;
+const resultDialog = document.querySelector(
+  '#result-dialog',
+) as HTMLDialogElement;
 const killer = document.createElement('div');
 killer.id = 'killer';
 const player = document.createElement('div');
@@ -54,8 +56,8 @@ export default function createHouse() {
   }
 }
 // we need to create another dialog or modify this to be the house size picker at begin of game and then turn to this. prob easier to just make 2 separate dialogs. Add this to a new file also, call it "resultDialog" or something
-dialog.addEventListener('submit', () => {
-  dialog.classList.remove(...dialog.classList);
+resultDialog.addEventListener('submit', () => {
+  resultDialog.classList.remove(...resultDialog.classList);
   deleteHouse();
   createHouse();
 });
