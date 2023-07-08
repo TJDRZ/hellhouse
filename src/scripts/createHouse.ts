@@ -17,7 +17,7 @@ const killerPosition: number[] = [];
 const playerPosition: number[] = [];
 
 export default function createHouse() {
-  killerPosition.push(0); // modify these numbers to be a dynamic # based off map size picked (don't forget to modify the class added below to start append the killer and player)
+  killerPosition.push(0);
   killerPosition.push(1);
   playerPosition.push(2);
   playerPosition.push(1);
@@ -38,12 +38,12 @@ export default function createHouse() {
           playerPosition,
         );
         const newKillerPosition = moveKiller(grid, killer, killerPosition);
-        while (playerPosition.length > 0) playerPosition.pop();
         while (killerPosition.length > 0) killerPosition.pop();
-        playerPosition.push(newPlayerPosition[0]);
-        playerPosition.push(newPlayerPosition[1]);
+        while (playerPosition.length > 0) playerPosition.pop();
         killerPosition.push(newKillerPosition[0]);
         killerPosition.push(newKillerPosition[1]);
+        playerPosition.push(newPlayerPosition[0]);
+        playerPosition.push(newPlayerPosition[1]);
         gameCheck(playerPosition, killerPosition);
       });
       house.append(room);
@@ -55,9 +55,8 @@ export default function createHouse() {
     }
   }
 }
-// we need to create another dialog or modify this to be the house size picker at begin of game and then turn to this. prob easier to just make 2 separate dialogs. Add this to a new file also, call it "resultDialog" or something
 resultDialog.addEventListener('submit', () => {
   resultDialog.classList.remove(...resultDialog.classList);
-  deleteHouse();
+  deleteHouse(killerPosition, playerPosition);
   createHouse();
 });
