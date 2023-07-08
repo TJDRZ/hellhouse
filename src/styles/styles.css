@@ -33,20 +33,20 @@ div {
   background-image: url("../assets/player.png");
 }
 
-#dialog {
+dialog {
   color: white;
   background-color: rgba(150, 10, 10, 0.747);
   border: none;
   box-shadow: inset 0 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
-#dialog > form {
+dialog > form {
   display: grid;
   gap: 1rem;
   padding: 1rem;
 }
 
-#dialog > form > button {
+dialog > form > button {
   cursor: pointer;
 }
 
