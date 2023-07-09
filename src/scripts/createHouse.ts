@@ -57,6 +57,6 @@ export default function createHouse() {
 }
 resultDialog.addEventListener('submit', () => {
   resultDialog.classList.remove(...resultDialog.classList);
-  deleteHouse(killerPosition, playerPosition);
+  deleteHouse(grid, killerPosition, playerPosition);
   createHouse();
 });
