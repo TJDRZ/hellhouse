@@ -9,7 +9,7 @@ const startDialog = document.querySelector(
 const difficultyForm = document.querySelector(
   '#difficulty-form',
 ) as HTMLFormElement;
-const house = document.querySelector('#house')!;
+const house = document.querySelector('#house') as HTMLDivElement;
 const resultDialog = document.querySelector(
   '#result-dialog',
 ) as HTMLDialogElement;
@@ -66,6 +66,8 @@ export default function createHouse(difficulty: number) {
       }
     }
   }
+  house.style.gridTemplateColumns = `repeat(${difficulty}, 1fr)`;
+  house.style.gridTemplateRows = `repeat(${difficulty}, 1fr)`;
 }
 resultDialog.addEventListener('submit', () => {
   resultDialog.classList.remove(...resultDialog.classList);
