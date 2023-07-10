@@ -8,7 +8,9 @@ killer.id = 'killer';
 const player = document.createElement('div');
 player.id = 'player';
 
-// the killer and player are created and then keep getting classes added to them probably is the problem with them starting in weird spots after new games created of new difficulties
+// maybe make another image that starts on the killer starting point so you know where the escape is?
+
+// why cant I lose on medium? it runs away or something
 
 export default function createHouse(
   difficulty: number,
@@ -19,7 +21,7 @@ export default function createHouse(
   const killerRowStart = 0;
   const killerColumnStart = Math.floor(difficulty / 2);
   const playerRowStart = difficulty - 1;
-  const playerColumnStart = Math.ceil(difficulty / 2);
+  const playerColumnStart = Math.floor(difficulty / 2);
 
   killerPosition.push(killerRowStart);
   killerPosition.push(killerColumnStart);

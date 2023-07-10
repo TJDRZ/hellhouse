@@ -1,4 +1,4 @@
-const house = document.querySelector('#house')!;
+const house = document.querySelector('#house') as HTMLDivElement;
 
 export default function deleteHouse(
   grid: number[][],

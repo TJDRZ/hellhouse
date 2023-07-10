@@ -19,7 +19,8 @@ const playerPosition: number[] = [];
 
 function difficultySetUp() {
   startDialog.showModal();
-  difficultyForm.addEventListener('submit', () => {
+  difficultyForm.addEventListener('submit', (e) => {
+    e.stopImmediatePropagation();
     const value = document.querySelector(
       'input[name="difficulty"]:checked',
     ) as HTMLInputElement;
