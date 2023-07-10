@@ -6,8 +6,6 @@ div {
 #house {
   width: 100vw;
   height: 100vh;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
 }
 
 .room {
@@ -35,6 +33,7 @@ div {
 
 dialog {
   color: white;
+  text-align: center;
   background-color: rgba(150, 10, 10, 0.747);
   border: none;
   box-shadow: inset 0 0 0 10px rgba(0, 0, 0, 0.5);
@@ -50,7 +49,7 @@ dialog > form > button {
   cursor: pointer;
 }
 
-.diedDialog::backdrop {
+#start-dialog::backdrop, .diedDialog::backdrop {
   background-image: url("../assets/BloodOverlay.png");
   background-size: 100% 100%;
 }

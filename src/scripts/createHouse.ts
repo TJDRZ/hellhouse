@@ -1,30 +1,36 @@
-import deleteHouse from './deleteHouse';
 import movePlayer from './movePlayer';
 import moveKiller from './moveKiller';
 import gameCheck from './gameCheck';
 
-const house = document.querySelector('#house')!;
-const resultDialog = document.querySelector(
-  '#result-dialog',
-) as HTMLDialogElement;
+const house = document.querySelector('#house') as HTMLDivElement;
 const killer = document.createElement('div');
 killer.id = 'killer';
 const player = document.createElement('div');
 player.id = 'player';
 
-const grid: number[][] = [];
-const killerPosition: number[] = [];
-const playerPosition: number[] = [];
+// maybe make another image that starts on the killer starting point so you know where the escape is?
 
-export default function createHouse() {
-  killerPosition.push(0);
-  killerPosition.push(1);
-  playerPosition.push(2);
-  playerPosition.push(1);
+// why cant I lose on medium? it runs away or something
 
-  for (let x = 0; x <= 2; x += 1) {
+export default function createHouse(
+  difficulty: number,
+  grid: number[][],
+  killerPosition: number[],
+  playerPosition: number[],
+) {
+  const killerRowStart = 0;
+  const killerColumnStart = Math.floor(difficulty / 2);
+  const playerRowStart = difficulty - 1;
+  const playerColumnStart = Math.floor(difficulty / 2);
+
+  killerPosition.push(killerRowStart);
+  killerPosition.push(killerColumnStart);
+  playerPosition.push(playerRowStart);
+  playerPosition.push(playerColumnStart);
+
+  for (let x = 0; x < difficulty; x += 1) {
     grid.push([]);
-    for (let y = 0; y <= 2; y += 1) {
+    for (let y = 0; y < difficulty; y += 1) {
       grid[x].push(y);
       const room = document.createElement('div');
       room.classList.add('room');
@@ -47,16 +53,15 @@ export default function createHouse() {
         gameCheck(playerPosition, killerPosition);
       });
       house.append(room);
-      if (room.classList.contains('r01')) room.append(killer);
-      if (room.classList.contains('r21')) {
+      if (room.classList.contains(`r${killerRowStart}${killerColumnStart}`))
+        room.append(killer);
+      if (room.classList.contains(`r${playerRowStart}${playerColumnStart}`)) {
         room.append(player);
         room.classList.add('active-room');
       }
     }
   }
+
+  house.style.gridTemplateColumns = `repeat(${difficulty}, 1fr)`;
+  house.style.gridTemplateRows = `repeat(${difficulty}, 1fr)`;
 }
-resultDialog.addEventListener('submit', () => {
-  resultDialog.classList.remove(...resultDialog.classList);
-  deleteHouse(grid, killerPosition, playerPosition);
-  createHouse();
-});
