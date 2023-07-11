@@ -45,7 +45,7 @@ dialog > form {
   padding: 1rem;
 }
 
-dialog > form > button {
+input, button {
   cursor: pointer;
 }
 
