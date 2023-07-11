@@ -46,7 +46,7 @@ export default function createHouse(
         killerPosition.push(newKillerPosition[1]);
         playerPosition.push(newPlayerPosition[0]);
         playerPosition.push(newPlayerPosition[1]);
-        gameCheck(playerPosition, killerPosition);
+        gameCheck(playerPosition, killerPosition, killerColumnStart);
       });
       house.append(room);
       if (room.classList.contains(`r${killerRowStart}${killerColumnStart}`))
