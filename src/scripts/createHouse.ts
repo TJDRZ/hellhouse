@@ -39,14 +39,16 @@ export default function createHouse(
           player,
           playerPosition,
         );
-        const newKillerPosition = moveKiller(grid, killer, killerPosition);
-        while (killerPosition.length > 0) killerPosition.pop();
-        while (playerPosition.length > 0) playerPosition.pop();
-        killerPosition.push(newKillerPosition[0]);
-        killerPosition.push(newKillerPosition[1]);
-        playerPosition.push(newPlayerPosition[0]);
-        playerPosition.push(newPlayerPosition[1]);
-        gameCheck(playerPosition, killerPosition, killerColumnStart);
+        if (newPlayerPosition[0] !== -1) {
+          const newKillerPosition = moveKiller(grid, killer, killerPosition);
+          while (killerPosition.length > 0) killerPosition.pop();
+          while (playerPosition.length > 0) playerPosition.pop();
+          killerPosition.push(newKillerPosition[0]);
+          killerPosition.push(newKillerPosition[1]);
+          playerPosition.push(newPlayerPosition[0]);
+          playerPosition.push(newPlayerPosition[1]);
+          gameCheck(playerPosition, killerPosition, killerColumnStart);
+        }
       });
       house.append(room);
       if (room.classList.contains(`r${killerRowStart}${killerColumnStart}`))

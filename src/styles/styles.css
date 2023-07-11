@@ -9,7 +9,7 @@ div {
 }
 
 .room {
-  background-image: url("../assets/hellhouse-room.png");
+  background-image: url('../assets/hellhouse-room.png');
   box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.9);
 }
 
@@ -21,14 +21,14 @@ div {
   place-self: center;
   width: 5rem;
   height: 5rem;
-  background-image: url("../assets/skeleton.png");
+  background-image: url('../assets/skeleton.png');
 }
 
 #player {
   place-self: center;
   width: 5rem;
   height: 5rem;
-  background-image: url("../assets/player.png");
+  background-image: url('../assets/player.png');
 }
 
 dialog {
@@ -45,11 +45,14 @@ dialog > form {
   padding: 1rem;
 }
 
-input, button {
+input,
+button,
+.room {
   cursor: pointer;
 }
 
-#start-dialog::backdrop, .diedDialog::backdrop {
-  background-image: url("../assets/BloodOverlay.png");
+#start-dialog::backdrop,
+.diedDialog::backdrop {
+  background-image: url('../assets/BloodOverlay.png');
   background-size: 100% 100%;
 }
