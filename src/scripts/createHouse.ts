@@ -8,10 +8,6 @@ killer.id = 'killer';
 const player = document.createElement('div');
 player.id = 'player';
 
-// maybe make another image that starts on the killer starting point so you know where the escape is?
-
-// if you click ok on difficulty dialog without a selected radio, white screen - make a radio button default selected and required
-
 export default function createHouse(
   difficulty: number,
   grid: number[][],
