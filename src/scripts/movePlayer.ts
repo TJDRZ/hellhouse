@@ -4,7 +4,7 @@ export default function movePlayer(
   room: HTMLDivElement,
   player: HTMLDivElement,
   playerPosition: number[],
-): number[] {
+): number[]{
   if (playerPosition[0] === x && playerPosition[1] === y) {
     return [x, y];
   }
@@ -20,5 +20,5 @@ export default function movePlayer(
     room.classList.add('active-room');
     return [x, y];
   }
-  return movePlayer(x, y, room, player, playerPosition);
+  return [-1];
 }
