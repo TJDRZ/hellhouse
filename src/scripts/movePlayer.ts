@@ -5,6 +5,9 @@ export default function movePlayer(
   player: HTMLDivElement,
   playerPosition: number[],
 ): number[] {
+  if (playerPosition[0] === x && playerPosition[1] === y) {
+    return [x, y];
+  }
   if (
     (playerPosition[0] === x &&
       (playerPosition[1] === y + 1 || playerPosition[1] === y - 1)) ||

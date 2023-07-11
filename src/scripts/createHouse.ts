@@ -8,10 +8,6 @@ killer.id = 'killer';
 const player = document.createElement('div');
 player.id = 'player';
 
-// maybe make another image that starts on the killer starting point so you know where the escape is?
-
-// why cant I lose on medium? it runs away or something
-
 export default function createHouse(
   difficulty: number,
   grid: number[][],
