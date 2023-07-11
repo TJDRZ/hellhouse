@@ -13,6 +13,5 @@
 
 **Future Feature Ideas:**
 
-- Dynamic house sizes. Most likely a small, medium, large prompt to start to avoid overly large room counts.
 - Alerts to tell player if killer on an adjacent square. Smarter AI killer, who will use the same.
 - Tasks, such as finding a key in a random room prior to escape.
