@@ -1,11 +1,7 @@
 import moveKiller from '../scripts/moveKiller';
 
-let mockKiller: HTMLDivElement;
-
-beforeEach(() => {
-  document.body.innerHTML = '<div id="mock-killer"></div>';
-  mockKiller = document.querySelector('#mock-killer') as HTMLDivElement;
-});
+document.body.innerHTML = '<div id="mock-killer"></div>';
+const mockKiller = document.querySelector('#mock-killer') as HTMLDivElement;
 
 test('Killer can only move 1 row up or down', () => {
   expect(
