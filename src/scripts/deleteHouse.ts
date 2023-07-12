@@ -5,7 +5,7 @@ export default function deleteHouse(
   killerPosition: number[],
   playerPosition: number[],
 ) {
-  while (house.firstChild) {
+  while (house?.firstChild) {
     house.removeChild(house.firstChild);
   }
   while (grid.length > 0) grid.pop();

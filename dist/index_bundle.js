@@ -166,7 +166,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ deleteHouse)\n/* harmony export */ });\nconst house = document.querySelector('#house');\nfunction deleteHouse(grid, killerPosition, playerPosition) {\n    while (house.firstChild) {\n        house.removeChild(house.firstChild);\n    }\n    while (grid.length > 0)\n        grid.pop();\n    while (killerPosition.length > 0)\n        killerPosition.pop();\n    while (playerPosition.length > 0)\n        playerPosition.pop();\n}\n\n\n//# sourceURL=webpack://hellhouse/./src/scripts/deleteHouse.ts?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ deleteHouse)\n/* harmony export */ });\nconst house = document.querySelector('#house');\nfunction deleteHouse(grid, killerPosition, playerPosition) {\n    while (house === null || house === void 0 ? void 0 : house.firstChild) {\n        house.removeChild(house.firstChild);\n    }\n    while (grid.length > 0)\n        grid.pop();\n    while (killerPosition.length > 0)\n        killerPosition.pop();\n    while (playerPosition.length > 0)\n        playerPosition.pop();\n}\n\n\n//# sourceURL=webpack://hellhouse/./src/scripts/deleteHouse.ts?");
 
 /***/ }),
 
