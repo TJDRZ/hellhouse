@@ -40,7 +40,12 @@ export default function createHouse(
           playerPosition,
         );
         if (newPlayerPosition[0] !== -1) {
-          const newKillerPosition = moveKiller(grid, killer, killerPosition);
+          const newKillerPosition = moveKiller(
+            grid,
+            killer,
+            killerPosition,
+            playerPosition,
+          );
           while (killerPosition.length > 0) killerPosition.pop();
           while (playerPosition.length > 0) playerPosition.pop();
           killerPosition.push(newKillerPosition[0]);

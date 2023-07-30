@@ -1,10 +1,13 @@
 import getRandomInt from './getRandomInt';
+import smartKiller from './smartKiller';
 
 export default function moveKiller(
   grid: number[][],
   killer: HTMLDivElement,
   killerPosition: number[],
+  playerPosition: number[],
 ): number[] {
+  // make difficult(y) a true or false, if false use the getRandomInt to do row/column variables below, if true use smartKiller
   const row = getRandomInt(grid[0].length);
   const column = getRandomInt(grid.length);
   if (
