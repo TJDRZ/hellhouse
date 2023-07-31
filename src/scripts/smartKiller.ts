@@ -2,8 +2,25 @@ export default function smartKiller(
   killerPosition: number[],
   playerPosition: number[],
 ) {
+  if (
+    // Same row and column +/- 1
+    killerPosition[0] === playerPosition[0] &&
+    killerPosition[1] === (playerPosition[1] + 1 || playerPosition[1] - 1)
+  ) {
+    return playerPosition;
+  }
+  if (
+    // Same column and row +/- 1
+    killerPosition[1] === playerPosition[1] &&
+    killerPosition[0] === (playerPosition[0] + 1 || playerPosition[0] - 1)
+  ) {
+    return playerPosition;
+  }
+  // then whatever wasnt true, take that and see if it is +1 or -1 away
+  // then if that is true, move to player position
   return [];
 }
+
 /*
 moveKiller rules for making sure legal move:
 

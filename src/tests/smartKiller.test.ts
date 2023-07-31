@@ -2,8 +2,8 @@ import smartKiller from '../scripts/smartKiller';
 
 test('Kills for win if possible', () => {
   // smart killer needs to take in killer current position and player current position
-  expect(smartKiller([1, 1], [0, 1])[0].toBeEqualTo(0));
-  expect(smartKiller([1, 1], [0, 1])[1].toBeEqualTo(1));
+  expect(smartKiller([1, 1], [0, 1])[0]).toEqual(0);
+  expect(smartKiller([1, 1], [0, 1])[1]).toEqual(1);
   // moveKiller still must only make a legal move
   // if current player position is a legal move, then killer must take it
 });

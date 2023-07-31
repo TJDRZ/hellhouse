@@ -44,7 +44,7 @@ export default function createHouse(
             grid,
             killer,
             killerPosition,
-            playerPosition,
+            // playerPosition,
           );
           while (killerPosition.length > 0) killerPosition.pop();
           while (playerPosition.length > 0) playerPosition.pop();
