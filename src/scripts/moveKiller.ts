@@ -4,7 +4,7 @@ export default function moveKiller(
   grid: number[][],
   killer: HTMLDivElement,
   killerPosition: number[],
-  // playerPosition: number[],
+  playerPosition: number[],
 ): number[] {
   // make difficult(y) a true or false, if false use the getRandomInt to do row/column variables below, if true use smartKiller
   const row = getRandomInt(grid[0].length);
@@ -27,5 +27,5 @@ export default function moveKiller(
       ?.appendChild(killer);
     return [killerPosition[0], column];
   }
-  return moveKiller(grid, killer, killerPosition);
+  return moveKiller(grid, killer, killerPosition, playerPosition);
 }

@@ -1,16 +1,24 @@
 import smartKiller from '../scripts/smartKiller';
 
-test('Kills for win if possible', () => {
-  // smart killer needs to take in killer current position and player current position
-  expect(smartKiller([1, 1], [0, 1])[0]).toEqual(0);
-  expect(smartKiller([1, 1], [0, 1])[1]).toEqual(1);
-  // moveKiller still must only make a legal move
-  // if current player position is a legal move, then killer must take it
+describe('Kills for win if possible', () => {
+  test('Moves to row of player', () => {
+    expect(smartKiller([1, 1], [0, 1])[0]).toEqual(0);
+    expect(smartKiller([1, 1], [0, 1])[1]).toEqual(1);
+  });
+  test('Moves to column of player', () => {
+    expect(smartKiller([1, 1], [1, 0])[0]).toEqual(1);
+    expect(smartKiller([1, 1], [1, 0])[1]).toEqual(0);
+  });
 });
 
-test('Moves toward the player instead of away', () => {});
+describe('Moves toward the player instead of away', () => {
+  test('Moves towards player', () => {
+    expect(smartKiller([1, 1], [2, 2])[0]).toEqual(2);
+    expect(smartKiller([1, 1], [2, 2])[1]).toEqual(1);
+  });
+});
 
-test('Stays in between exit and player', () => {});
+describe('Stays in between exit and player', () => {});
 
 // do not allow killer to stay still. If player is cornered, it will be a stand still indefinitely
 

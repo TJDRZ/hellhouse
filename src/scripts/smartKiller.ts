@@ -16,8 +16,6 @@ export default function smartKiller(
   ) {
     return playerPosition;
   }
-  // then whatever wasnt true, take that and see if it is +1 or -1 away
-  // then if that is true, move to player position
   return [];
 }
 
