@@ -6,8 +6,8 @@ import deleteHouse from './scripts/deleteHouse';
 const startDialog = document.querySelector(
   '#start-dialog',
 ) as HTMLDialogElement;
-const difficultyForm = document.querySelector(
-  '#difficulty-form',
+const gameSetUpForm = document.querySelector(
+  '#game-setup-form',
 ) as HTMLFormElement;
 const resultDialog = document.querySelector(
   '#result-dialog',
@@ -17,21 +17,30 @@ const grid: number[][] = [];
 const killerPosition: number[] = [];
 const playerPosition: number[] = [];
 
-function difficultySetUp() {
+function gameSetUp() {
   startDialog.showModal();
-  difficultyForm.addEventListener('submit', (e) => {
+  gameSetUpForm.addEventListener('submit', (e) => {
     e.stopImmediatePropagation();
-    const value = document.querySelector(
+    const mapSize = document.querySelector(
+      'input[name="map-size"]:checked',
+    ) as HTMLInputElement;
+    const difficulty = document.querySelector(
       'input[name="difficulty"]:checked',
     ) as HTMLInputElement;
-    createHouse(Number(value.value), grid, killerPosition, playerPosition);
+    createHouse(
+      Number(mapSize.value),
+      difficulty.value,
+      grid,
+      killerPosition,
+      playerPosition,
+    );
   });
 }
 
 resultDialog.addEventListener('submit', () => {
   resultDialog.classList.remove(...resultDialog.classList);
   deleteHouse(grid, killerPosition, playerPosition);
-  difficultySetUp();
+  gameSetUp();
 });
 
-difficultySetUp();
+gameSetUp();

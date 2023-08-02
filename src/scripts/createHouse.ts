@@ -9,24 +9,25 @@ const player = document.createElement('div');
 player.id = 'player';
 
 export default function createHouse(
-  difficulty: number,
+  mapSize: number,
+  difficulty: string,
   grid: number[][],
   killerPosition: number[],
   playerPosition: number[],
 ) {
   const killerRowStart = 0;
-  const killerColumnStart = Math.floor(difficulty / 2);
-  const playerRowStart = difficulty - 1;
-  const playerColumnStart = Math.floor(difficulty / 2);
+  const killerColumnStart = Math.floor(mapSize / 2);
+  const playerRowStart = mapSize - 1;
+  const playerColumnStart = Math.floor(mapSize / 2);
 
   killerPosition.push(killerRowStart);
   killerPosition.push(killerColumnStart);
   playerPosition.push(playerRowStart);
   playerPosition.push(playerColumnStart);
 
-  for (let x = 0; x < difficulty; x += 1) {
+  for (let x = 0; x < mapSize; x += 1) {
     grid.push([]);
-    for (let y = 0; y < difficulty; y += 1) {
+    for (let y = 0; y < mapSize; y += 1) {
       grid[x].push(y);
       const room = document.createElement('div');
       room.classList.add('room');
@@ -40,13 +41,19 @@ export default function createHouse(
           playerPosition,
         );
         if (newPlayerPosition[0] !== -1) {
-          const newKillerPosition = moveKiller(grid, killer, killerPosition);
-          while (killerPosition.length > 0) killerPosition.pop();
           while (playerPosition.length > 0) playerPosition.pop();
-          killerPosition.push(newKillerPosition[0]);
-          killerPosition.push(newKillerPosition[1]);
           playerPosition.push(newPlayerPosition[0]);
           playerPosition.push(newPlayerPosition[1]);
+          const newKillerPosition = moveKiller(
+            grid,
+            killer,
+            killerPosition,
+            playerPosition,
+            difficulty,
+          );
+          while (killerPosition.length > 0) killerPosition.pop();
+          killerPosition.push(newKillerPosition[0]);
+          killerPosition.push(newKillerPosition[1]);
           gameCheck(playerPosition, killerPosition, killerColumnStart);
         }
       });
@@ -60,6 +67,6 @@ export default function createHouse(
     }
   }
 
-  house.style.gridTemplateColumns = `repeat(${difficulty}, 1fr)`;
-  house.style.gridTemplateRows = `repeat(${difficulty}, 1fr)`;
+  house.style.gridTemplateColumns = `repeat(${mapSize}, 1fr)`;
+  house.style.gridTemplateRows = `repeat(${mapSize}, 1fr)`;
 }
