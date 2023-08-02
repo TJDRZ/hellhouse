@@ -21,9 +21,3 @@ describe('Moves toward the player instead of away', () => {
     expect(smartKiller([1, 1], [0, 0])[1]).toEqual(1);
   });
 });
-
-describe('Stays in between exit and player', () => {});
-
-// do not allow killer to stay still. If player is cornered, it will be a stand still indefinitely
-
-// we need to determine what killer AI to use depending on selection (maybe lets make all maps 3x3 and just make smartKiller and randomKiller - 2 difficulties)
