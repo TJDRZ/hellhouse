@@ -1,12 +1,19 @@
 import getRandomInt from './getRandomInt';
+import smartKiller from './smartKiller';
 
 export default function moveKiller(
   grid: number[][],
   killer: HTMLDivElement,
   killerPosition: number[],
   playerPosition: number[],
+  difficulty: number,
 ): number[] {
-  // make difficult(y) a true or false, if false use the getRandomInt to do row/column variables below, if true use smartKiller
+  if (difficulty === 3) {
+    const move = smartKiller(killerPosition, playerPosition);
+    killer.parentElement?.removeChild(killer);
+    document.querySelector(`.r${move[0]}${move[1]}`)?.appendChild(killer);
+    return move;
+  }
   const row = getRandomInt(grid[0].length);
   const column = getRandomInt(grid.length);
   if (
@@ -27,5 +34,5 @@ export default function moveKiller(
       ?.appendChild(killer);
     return [killerPosition[0], column];
   }
-  return moveKiller(grid, killer, killerPosition, playerPosition);
+  return moveKiller(grid, killer, killerPosition, playerPosition, difficulty);
 }

@@ -13,7 +13,8 @@ test('Killer can only move 1 row up or down', () => {
       ],
       mockKiller,
       [1, 1],
-      [2, 2]
+      [2, 2],
+      5,
     )[0],
   ).toBeLessThanOrEqual(2);
   expect(
@@ -25,7 +26,8 @@ test('Killer can only move 1 row up or down', () => {
       ],
       mockKiller,
       [1, 1],
-      [2, 2]
+      [2, 2],
+      5,
     )[0],
   ).toBeGreaterThanOrEqual(0);
 });
@@ -40,7 +42,8 @@ test('Killer cannot go off board', () => {
       ],
       mockKiller,
       [0, 1],
-      [2, 2]
+      [2, 2],
+      5,
     )[0],
   ).toBeLessThanOrEqual(1);
   expect(
@@ -52,7 +55,8 @@ test('Killer cannot go off board', () => {
       ],
       mockKiller,
       [1, 1],
-      [2, 2]
+      [2, 2],
+      5,
     )[0],
   ).toBeGreaterThanOrEqual(0);
 });
