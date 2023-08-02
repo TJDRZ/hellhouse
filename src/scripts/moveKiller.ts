@@ -6,9 +6,9 @@ export default function moveKiller(
   killer: HTMLDivElement,
   killerPosition: number[],
   playerPosition: number[],
-  difficulty: number,
+  difficulty: string,
 ): number[] {
-  if (difficulty === 3) {
+  if (difficulty === 'hard') {
     const move = smartKiller(killerPosition, playerPosition);
     killer.parentElement?.removeChild(killer);
     document.querySelector(`.r${move[0]}${move[1]}`)?.appendChild(killer);
