@@ -3,6 +3,13 @@ export default function smartKiller(
   playerPosition: number[],
 ) {
   if (
+    // Same row and column
+    killerPosition[0] === playerPosition[0] &&
+    killerPosition[1] === playerPosition[1]
+  ) {
+    return playerPosition;
+  }
+  if (
     // Same row and column +/- 1
     killerPosition[0] === playerPosition[0] &&
     killerPosition[1] === (playerPosition[1] + 1 || playerPosition[1] - 1)
