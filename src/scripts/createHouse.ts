@@ -1,3 +1,4 @@
+import createEscapeRoom from './createEscapeRoom';
 import movePlayer from './movePlayer';
 import moveKiller from './moveKiller';
 import gameCheck from './gameCheck';
@@ -25,6 +26,8 @@ export default function createHouse(
   playerPosition.push(playerRowStart);
   playerPosition.push(playerColumnStart);
 
+  const escapeRoom = createEscapeRoom(mapSize, playerPosition);
+
   for (let x = 0; x < mapSize; x += 1) {
     grid.push([]);
     for (let y = 0; y < mapSize; y += 1) {
@@ -32,6 +35,9 @@ export default function createHouse(
       const room = document.createElement('div');
       room.classList.add('room');
       room.classList.add(`r${x}${y}`);
+      if (room.classList.contains(escapeRoom.class)) {
+        room.classList.add('escape-room');
+      }
       room.addEventListener('click', () => {
         const newPlayerPosition = movePlayer(
           x,
@@ -54,7 +60,7 @@ export default function createHouse(
           while (killerPosition.length > 0) killerPosition.pop();
           killerPosition.push(newKillerPosition[0]);
           killerPosition.push(newKillerPosition[1]);
-          gameCheck(playerPosition, killerPosition, killerColumnStart);
+          gameCheck(playerPosition, killerPosition, escapeRoom.coordinates);
         }
       });
       house.append(room);
