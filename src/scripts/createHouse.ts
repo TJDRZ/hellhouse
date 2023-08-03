@@ -26,7 +26,7 @@ export default function createHouse(
   playerPosition.push(playerRowStart);
   playerPosition.push(playerColumnStart);
 
-  const escapeRoom = createEscapeRoom(mapSize, playerPosition);
+  const escapeRoom = createEscapeRoom(mapSize);
 
   for (let x = 0; x < mapSize; x += 1) {
     grid.push([]);
