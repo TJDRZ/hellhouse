@@ -13,6 +13,11 @@ div {
   box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.9);
 }
 
+.escape-room {
+  background-image: url('../assets/hellhouse-escape-room.png');
+  box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.7);
+}
+
 .active-room {
   box-shadow: none;
 }
