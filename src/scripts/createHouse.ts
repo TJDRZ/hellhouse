@@ -42,12 +42,13 @@ export default function createHouse(
           killer,
           killerPosition,
           killerType,
-          escapeRoom.coordinates,
+          escapeRoom.position,
         );
       });
       house.append(room);
-      if (room.classList.contains(`r${killerRowStart}${killerColumnStart}`))
+      if (room.classList.contains(`r${killerRowStart}${killerColumnStart}`)) {
         room.append(killer);
+      }
       if (room.classList.contains(`r${playerRowStart}${playerColumnStart}`)) {
         room.append(player);
         room.classList.add('active-room');

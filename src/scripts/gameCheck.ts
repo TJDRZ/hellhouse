@@ -8,7 +8,7 @@ const resultDialogText = document.querySelector(
 export default function gameCheck(
   playerPosition: number[],
   killerPosition: number[],
-  escapeRoom: number[],
+  escapeRoomPosition: number[],
 ) {
   if (
     killerPosition[0] === playerPosition[0] &&
@@ -18,8 +18,8 @@ export default function gameCheck(
     resultDialog.showModal();
     resultDialogText.innerText = 'You Died!';
   } else if (
-    playerPosition[0] === escapeRoom[0] &&
-    playerPosition[1] === escapeRoom[1]
+    playerPosition[0] === escapeRoomPosition[0] &&
+    playerPosition[1] === escapeRoomPosition[1]
   ) {
     resultDialog.showModal();
     resultDialogText.innerText = 'You Escaped!';

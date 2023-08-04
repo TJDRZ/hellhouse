@@ -5,9 +5,11 @@ export default function movePlayer(
   playerPosition: number[],
 ): number[] {
   const [x, y] = roomPosition;
+  // Standing still
   if (playerPosition[0] === x && playerPosition[1] === y) {
     return [x, y];
   }
+  // Legal move to new room
   if (
     (playerPosition[0] === x &&
       (playerPosition[1] === y + 1 || playerPosition[1] === y - 1)) ||
@@ -20,5 +22,6 @@ export default function movePlayer(
     room.classList.add('active-room');
     return [x, y];
   }
+  // Illegal move made
   return [-1];
 }

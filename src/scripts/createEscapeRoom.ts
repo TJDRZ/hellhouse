@@ -10,6 +10,6 @@ export default function createEscapeRoom(
   }
   return {
     class: `r${row}${column}`,
-    coordinates: [row, column],
+    position: [row, column],
   };
 }
