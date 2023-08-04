@@ -54,4 +54,6 @@ export default function createHouse(
 
   house.style.gridTemplateColumns = `repeat(${mapSize}, 1fr)`;
   house.style.gridTemplateRows = `repeat(${mapSize}, 1fr)`;
+
+  killer.className = killerType;
 }
