@@ -28,20 +28,23 @@
         <fieldset>
           <input
             type="radio"
-            id="easy"
-            name="difficulty"
-            value="easy"
+            id="skeleton"
+            name="killer-type"
+            value="skeleton"
             checked
             required
           />
-          <label for="easy">Easy</label>
-          <input type="radio" id="hard" name="difficulty" value="hard" />
-          <label for="hard">Hard</label>
+          <label for="skeleton">Skeleton</label>
+          <input type="radio" id="ghost" name="killer-type" value="ghost" />
+          <label for="ghost">Ghost</label>
         </fieldset>
         <button>OK</button>
       </form>
     </dialog>
-    <div id="house"></div>
+    <div id="house">
+      <div id="killer"></div>
+      <div id="player"></div>
+    </div>
     <dialog id="result-dialog">
       <form method="dialog">
         <p id="result-dialog-text"></p>

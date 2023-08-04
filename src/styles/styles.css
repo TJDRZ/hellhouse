@@ -26,7 +26,14 @@ div {
   place-self: center;
   width: 5rem;
   height: 5rem;
+}
+
+.skeleton {
   background-image: url('../assets/skeleton.png');
+}
+
+.ghost {
+  background-image: url('../assets/ghost.png');
 }
 
 #player {

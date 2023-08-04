@@ -13,7 +13,6 @@ const resultDialog = document.querySelector(
   '#result-dialog',
 ) as HTMLDialogElement;
 
-const grid: number[][] = [];
 const killerPosition: number[] = [];
 const playerPosition: number[] = [];
 
@@ -24,13 +23,12 @@ function gameSetUp() {
     const mapSize = document.querySelector(
       'input[name="map-size"]:checked',
     ) as HTMLInputElement;
-    const difficulty = document.querySelector(
-      'input[name="difficulty"]:checked',
+    const killerType = document.querySelector(
+      'input[name="killer-type"]:checked',
     ) as HTMLInputElement;
     createHouse(
       Number(mapSize.value),
-      difficulty.value,
-      grid,
+      killerType.value,
       killerPosition,
       playerPosition,
     );
@@ -39,7 +37,7 @@ function gameSetUp() {
 
 resultDialog.addEventListener('submit', () => {
   resultDialog.classList.remove(...resultDialog.classList);
-  deleteHouse(grid, killerPosition, playerPosition);
+  deleteHouse(killerPosition, playerPosition);
   gameSetUp();
 });
 
