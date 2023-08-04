@@ -1,10 +1,10 @@
 export default function movePlayer(
-  x: number,
-  y: number,
   room: HTMLDivElement,
+  roomPosition: number[],
   player: HTMLDivElement,
   playerPosition: number[],
-): number[]{
+): number[] {
+  const [x, y] = roomPosition;
   if (playerPosition[0] === x && playerPosition[1] === y) {
     return [x, y];
   }

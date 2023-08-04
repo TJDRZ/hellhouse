@@ -1,7 +1,5 @@
 import createEscapeRoom from './createEscapeRoom';
-import movePlayer from './movePlayer';
-import moveKiller from './moveKiller';
-import gameCheck from './gameCheck';
+import processTurn from './processTurn';
 
 const house = document.querySelector('#house') as HTMLDivElement;
 const killer = document.createElement('div');
@@ -36,28 +34,16 @@ export default function createHouse(
         room.classList.add('escape-room');
       }
       room.addEventListener('click', () => {
-        const newPlayerPosition = movePlayer(
-          x,
-          y,
+        processTurn(
           room,
+          [x, y],
           player,
           playerPosition,
+          killer,
+          killerPosition,
+          killerType,
+          escapeRoom.coordinates,
         );
-        if (newPlayerPosition[0] !== -1) {
-          while (playerPosition.length > 0) playerPosition.pop();
-          playerPosition.push(newPlayerPosition[0]);
-          playerPosition.push(newPlayerPosition[1]);
-          const newKillerPosition = moveKiller(
-            killer,
-            killerPosition,
-            playerPosition,
-            killerType,
-          );
-          while (killerPosition.length > 0) killerPosition.pop();
-          killerPosition.push(newKillerPosition[0]);
-          killerPosition.push(newKillerPosition[1]);
-          gameCheck(playerPosition, killerPosition, escapeRoom.coordinates);
-        }
       });
       house.append(room);
       if (room.classList.contains(`r${killerRowStart}${killerColumnStart}`))
