@@ -1,7 +1,8 @@
+const player = document.querySelector('#player') as HTMLDivElement;
+
 export default function movePlayer(
   room: HTMLDivElement,
   roomPosition: number[],
-  player: HTMLDivElement,
   playerPosition: number[],
 ): number[] {
   const [x, y] = roomPosition;

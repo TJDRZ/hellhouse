@@ -5,9 +5,7 @@ import gameCheck from './gameCheck';
 export default function processTurn(
   room: HTMLDivElement,
   roomPosition: number[],
-  player: HTMLDivElement,
   playerPosition: number[],
-  killer: HTMLDivElement,
   killerPosition: number[],
   killerType: string,
   escapeRoomPosition: number[],
@@ -15,7 +13,6 @@ export default function processTurn(
   const newPlayerPosition = movePlayer(
     room,
     roomPosition,
-    player,
     playerPosition,
   );
   // Continue with turn only if player makes a legal move
@@ -24,7 +21,6 @@ export default function processTurn(
     playerPosition.push(newPlayerPosition[0]);
     playerPosition.push(newPlayerPosition[1]);
     const newKillerPosition = moveKiller(
-      killer,
       killerPosition,
       playerPosition,
       killerType,
