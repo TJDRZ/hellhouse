@@ -11,8 +11,7 @@ player.id = 'player';
 
 export default function createHouse(
   mapSize: number,
-  difficulty: string,
-  grid: number[][],
+  killerType: string,
   killerPosition: number[],
   playerPosition: number[],
 ) {
@@ -29,9 +28,7 @@ export default function createHouse(
   const escapeRoom = createEscapeRoom(mapSize);
 
   for (let x = 0; x < mapSize; x += 1) {
-    grid.push([]);
     for (let y = 0; y < mapSize; y += 1) {
-      grid[x].push(y);
       const room = document.createElement('div');
       room.classList.add('room');
       room.classList.add(`r${x}${y}`);
@@ -51,11 +48,10 @@ export default function createHouse(
           playerPosition.push(newPlayerPosition[0]);
           playerPosition.push(newPlayerPosition[1]);
           const newKillerPosition = moveKiller(
-            grid,
             killer,
             killerPosition,
             playerPosition,
-            difficulty,
+            killerType,
           );
           while (killerPosition.length > 0) killerPosition.pop();
           killerPosition.push(newKillerPosition[0]);
