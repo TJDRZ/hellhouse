@@ -1,3 +1,5 @@
+import getRandomInt from './getRandomInt';
+
 export default function smartKiller(
   killerPosition: number[],
   playerPosition: number[],
@@ -37,9 +39,16 @@ export default function smartKiller(
     }
     return [killerPosition[0] - 1, killerPosition[1]];
   }
-  // Prioritize moving rows towards player
-  if (playerPosition[0] > killerPosition[0]) {
-    return [killerPosition[0] + 1, killerPosition[1]];
+  // Random row or column picker
+  const prioritizeRow = getRandomInt(2);
+  if (prioritizeRow) {
+    if (playerPosition[0] > killerPosition[0]) {
+      return [killerPosition[0] + 1, killerPosition[1]];
+    }
+    return [killerPosition[0] - 1, killerPosition[1]];
   }
-  return [killerPosition[0] - 1, killerPosition[1]];
+  if (playerPosition[1] > killerPosition[1]) {
+    return [killerPosition[0], killerPosition[1] + 1];
+  }
+  return [killerPosition[0], killerPosition[1] - 1];
 }
