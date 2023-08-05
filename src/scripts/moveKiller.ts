@@ -12,14 +12,14 @@ export default function moveKiller(
   killer.parentElement?.removeChild(killer);
   document.querySelector(`.r${move[0]}${move[1]}`)?.appendChild(killer);
   turnCounter.increment();
-  // The Ghost fades in and out every turn
+  // The Ghost fades in and out every other turn
   if (killerType === 'ghost') {
     if (turnCounter.turn % 2 !== 0) {
       killer.style.display = ' none';
     } else killer.style.display = 'block';
   }
-  // The Vampire takes two moves every other turn
-  if (killerType === 'vampire' && turnCounter.turn % 2 !== 0) {
+  // The Vampire takes two moves every 5th turn
+  if (killerType === 'vampire' && turnCounter.turn % 5 === 0) {
     const moveTwo = smartKiller(move, playerPosition);
     setTimeout(() => {
       killer.parentElement?.removeChild(killer);
