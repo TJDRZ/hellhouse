@@ -36,6 +36,10 @@ div {
   background-image: url('../assets/ghost.png');
 }
 
+.vampire {
+  background-image: url('../assets/vampire.png');
+}
+
 #player {
   place-self: center;
   width: 5rem;
