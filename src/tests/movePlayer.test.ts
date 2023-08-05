@@ -1,6 +1,7 @@
 import movePlayer from '../scripts/movePlayer';
 
 document.body.innerHTML = '<div id="mock-room"></div>';
+
 const mockRoom = document.querySelector('#mock-room') as HTMLDivElement;
 
 test('Player stays still on current room click', () => {

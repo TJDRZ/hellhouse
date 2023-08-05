@@ -17,9 +17,11 @@ export default function movePlayer(
     (playerPosition[1] === y &&
       (playerPosition[0] === x + 1 || playerPosition[0] === x - 1))
   ) {
-    player.parentElement?.classList.remove('active-room');
-    player.parentElement?.removeChild(player);
-    room.appendChild(player);
+    if (player) {
+      player.parentElement?.classList.remove('active-room');
+      player.parentElement?.removeChild(player);
+      room.appendChild(player);
+    }
     room.classList.add('active-room');
     return [x, y];
   }

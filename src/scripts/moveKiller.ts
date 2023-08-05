@@ -18,5 +18,16 @@ export default function moveKiller(
       killer.style.display = ' none';
     } else killer.style.display = 'block';
   }
+  // The Vampire takes two moves every other turn
+  if (killerType === 'vampire' && turnCounter.turn % 2 !== 0) {
+    const moveTwo = smartKiller(move, playerPosition);
+    setTimeout(() => {
+      killer.parentElement?.removeChild(killer);
+      document
+        .querySelector(`.r${moveTwo[0]}${moveTwo[1]}`)
+        ?.appendChild(killer);
+    }, 300);
+    return moveTwo;
+  }
   return move;
 }
