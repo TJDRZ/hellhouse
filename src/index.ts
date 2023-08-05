@@ -9,6 +9,10 @@ const startDialog = document.querySelector(
 const gameSetUpForm = document.querySelector(
   '#game-setup-form',
 ) as HTMLFormElement;
+const showRules = document.querySelector('#show-rules') as HTMLButtonElement;
+const rulesDialog = document.querySelector(
+  '#rules-dialog',
+) as HTMLDialogElement;
 const resultDialog = document.querySelector(
   '#result-dialog',
 ) as HTMLDialogElement;
@@ -34,6 +38,8 @@ function gameSetUp() {
     );
   });
 }
+
+showRules.addEventListener('click', () => rulesDialog.showModal());
 
 resultDialog.addEventListener('submit', () => {
   resultDialog.classList.remove(...resultDialog.classList);
