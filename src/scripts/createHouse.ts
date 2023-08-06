@@ -39,7 +39,7 @@ export default function createHouse(
           killerPosition,
           killerType,
           escapeRoom.position,
-          );
+        );
       });
       house.append(room);
       if (room.classList.contains(`r${killerRowStart}${killerColumnStart}`)) {

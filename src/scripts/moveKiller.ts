@@ -1,13 +1,12 @@
 import smartKiller from './smartKiller';
 import turnCounter from './turnCounter';
 
-const killer = document.querySelector('#killer') as HTMLDivElement;
-
 export default function moveKiller(
   killerPosition: number[],
   playerPosition: number[],
   killerType: string,
 ): number[] {
+  const killer = document.querySelector('#killer') as HTMLDivElement;
   const move = smartKiller(killerPosition, playerPosition);
   killer.parentElement?.removeChild(killer);
   document.querySelector(`.r${move[0]}${move[1]}`)?.appendChild(killer);

@@ -10,11 +10,7 @@ export default function processTurn(
   killerType: string,
   escapeRoomPosition: number[],
 ) {
-  const newPlayerPosition = movePlayer(
-    room,
-    roomPosition,
-    playerPosition,
-  );
+  const newPlayerPosition = movePlayer(room, roomPosition, playerPosition);
   // Continue with turn only if player makes a legal move
   if (newPlayerPosition[0] !== -1) {
     while (playerPosition.length > 0) playerPosition.pop();
