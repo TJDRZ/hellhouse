@@ -2,10 +2,10 @@ import moveKiller from '../scripts/moveKiller';
 import turnCounter from '../scripts/turnCounter';
 
 document.body.innerHTML =
-  '<div id="mock-room1"></div><div id="mock-room2"></div><div id="killer"></div>';
+  '<div id="room1"></div><div id="room2"></div><div id="killer"></div>';
 
-const mockRoom1 = document.querySelector('#mock-room1') as HTMLDivElement;
-const mockRoom2 = document.querySelector('#mock-room2') as HTMLDivElement;
+const room1 = document.querySelector('#room1') as HTMLDivElement;
+const room2 = document.querySelector('#room2') as HTMLDivElement;
 const killer = document.querySelector('#killer') as HTMLDivElement;
 
 beforeEach(() => {
@@ -13,13 +13,13 @@ beforeEach(() => {
 });
 
 describe('Correct room div contains killer after move', () => {
-  mockRoom1.className = 'r01';
+  room1.className = 'r01';
   moveKiller([0, 0], [0, 1], 'skeleton');
   test('Correct room receives the killer div', () => {
-    expect(mockRoom1.innerHTML).toContain('<div id="killer"></div>');
+    expect(room1.innerHTML).toContain('<div id="killer"></div>');
   });
   test('Another room does not have the killer div', () => {
-    expect(mockRoom2.innerHTML.includes('<div id="killer"></div>')).toBeFalsy();
+    expect(room2.innerHTML.includes('<div id="killer"></div>')).toBeFalsy();
   });
 });
 
