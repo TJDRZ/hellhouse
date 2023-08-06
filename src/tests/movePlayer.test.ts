@@ -14,7 +14,7 @@ describe('Player can only make legal moves', () => {
     expect(movePlayer(mockRoom1, [2, 1], [1, 1])).toEqual([2, 1]);
   });
   test('Illegal move returns -1', () => {
-    expect(movePlayer(mockRoom1, [2, 2], [1, 1])[0]).toBe(-1);
+    expect(movePlayer(mockRoom1, [2, 2], [1, 1])[0]).toEqual(-1);
   });
 });
 

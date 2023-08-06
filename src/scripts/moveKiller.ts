@@ -14,7 +14,7 @@ export default function moveKiller(
   // The Ghost fades in and out every other turn
   if (killerType === 'ghost') {
     if (turnCounter.turn % 2 !== 0) {
-      killer.style.display = ' none';
+      killer.style.display = 'none';
     } else killer.style.display = 'block';
   }
   // The Vampire takes two moves every 5th turn
