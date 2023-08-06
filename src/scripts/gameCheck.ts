@@ -9,6 +9,7 @@ export default function gameCheck(
   const resultDialogText = document.querySelector(
     '#result-dialog-text',
   ) as HTMLParagraphElement;
+  
   if (
     killerPosition[0] === playerPosition[0] &&
     killerPosition[1] === playerPosition[1]
