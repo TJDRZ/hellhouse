@@ -1,9 +1,7 @@
 import movePlayer from '../scripts/movePlayer';
 
 document.body.innerHTML =
-'<div id="mock-room1"></div>' +
-'<div id="mock-room2"></div>' +
-'<div id="player"></div>';
+  '<div id="mock-room1"></div><div id="mock-room2"></div><div id="player"></div>';
 
 const mockRoom1 = document.querySelector('#mock-room1') as HTMLDivElement;
 const mockRoom2 = document.querySelector('#mock-room2') as HTMLDivElement;
@@ -18,7 +16,7 @@ describe('Player can only make legal moves', () => {
   test('Illegal move returns -1', () => {
     expect(movePlayer(mockRoom1, [2, 2], [1, 1])[0]).toBe(-1);
   });
-})
+});
 
 describe('active-room class is added to the proper div', () => {
   movePlayer(mockRoom1, [0, 0], [0, 1]);
