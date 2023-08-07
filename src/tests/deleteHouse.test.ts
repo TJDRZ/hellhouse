@@ -9,7 +9,7 @@ const killer = document.querySelector('#killer') as HTMLDivElement;
 const killerPosition: number[] = [];
 const playerPosition: number[] = [];
 
-beforeEach(() => {
+beforeAll(() => {
   killerPosition.push(1);
   killerPosition.push(1);
   playerPosition.push(1);
