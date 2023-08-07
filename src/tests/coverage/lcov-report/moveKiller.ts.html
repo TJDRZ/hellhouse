@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">76.92% </span>
+                <span class="strong">84.21% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>10/13</span>
+                <span class='fraction'>16/19</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">45.83% </span>
+                <span class="strong">54.54% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>11/24</span>
+                <span class='fraction'>12/22</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>1/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">76.92% </span>
+                <span class="strong">84.21% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>10/13</span>
+                <span class='fraction'>16/19</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -92,63 +92,75 @@
 <a name='L27'></a><a href='#L27'>27</a>
 <a name='L28'></a><a href='#L28'>28</a>
 <a name='L29'></a><a href='#L29'>29</a>
-<a name='L30'></a><a href='#L30'>30</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L30'></a><a href='#L30'>30</a>
+<a name='L31'></a><a href='#L31'>31</a>
+<a name='L32'></a><a href='#L32'>32</a>
+<a name='L33'></a><a href='#L33'>33</a>
+<a name='L34'></a><a href='#L34'>34</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import getRandomInt from './getRandomInt';
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import smartKiller from './smartKiller';
+import turnCounter from './turnCounter';
 &nbsp;
 export default function moveKiller(
-  grid: number[][],
-  killer: HTMLDivElement,
   killerPosition: number[],
+  playerPosition: number[],
+  killerType: string,
 ): number[] {
-  const row = getRandomInt(grid[0].length);
-  const column = getRandomInt(grid.length);
-  if (
-    killerPosition[0] !== row &amp;&amp;
-    (killerPosition[0] === row + 1 || killerPosition[0] === row - 1)
-  ) {
-    killer.parentElement?.removeChild(killer);
-    document.querySelector(`.r${row}${killerPosition[1]}`)<span class="branch-1 cbranch-no" title="branch not covered" ><span class="branch-1 cbranch-no" title="branch not covered" >?.a</span>ppendChild(killer);</span>
-    return [row, killerPosition[1]];
+  const killer = document.querySelector('#killer') as HTMLDivElement;
+  
+  const move = smartKiller(killerPosition, playerPosition);
+  killer.parentElement<span class="branch-0 cbranch-no" title="branch not covered" >?.r</span>emoveChild(killer);
+  document.querySelector(`.r${move[0]}${move[1]}`)?.appendChild(killer);
+  turnCounter.increment();
+  // The Ghost fades in and out every other turn
+  if (killerType === 'ghost') {
+    if (turnCounter.turn % 2 !== 0) {
+      killer.style.display = 'none';
+    } else <span class="cstat-no" title="statement not covered" ><span class="missing-if-branch" title="else path not taken" >E</span>killer.style.display = 'block';</span>
   }
-  <span class="missing-if-branch" title="if path not taken" >I</span>if (
-    killerPosition[1] !== column &amp;&amp;
-    (<span class="branch-1 cbranch-no" title="branch not covered" >killerPosition[1] === column + 1 </span>|| <span class="branch-2 cbranch-no" title="branch not covered" >killerPosition[1] === column - 1)</span>
-  ) {
-<span class="cstat-no" title="statement not covered" >    killer.parentElement?.removeChild(killer);</span>
-<span class="cstat-no" title="statement not covered" >    document</span>
-      .querySelector(`.r${killerPosition[0]}${column}`)
-      ?.appendChild(killer);
-<span class="cstat-no" title="statement not covered" >    return [killerPosition[0], column];</span>
+  // The Vampire takes two moves every 5th turn
+  if (killerType === 'vampire' &amp;&amp; turnCounter.turn % 5 === 0) {
+    const moveTwo = smartKiller(move, playerPosition);
+    setTimeout(<span class="fstat-no" title="function not covered" >() =</span>&gt; {
+<span class="cstat-no" title="statement not covered" >      killer.parentElement?.removeChild(killer);</span>
+<span class="cstat-no" title="statement not covered" >      document</span>
+        .querySelector(`.r${moveTwo[0]}${moveTwo[1]}`)
+        ?.appendChild(killer);
+    }, 300);
+    return moveTwo;
   }
-  return moveKiller(grid, killer, killerPosition);
+  return move;
 }
 &nbsp;</pre></td></tr></table></pre>
 
@@ -157,7 +169,7 @@ export default function moveKiller(
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-07-12T23:23:06.691Z
+                at 2023-08-07T01:16:12.029Z
             </div>
         <script src="prettify.js"></script>
         <script>

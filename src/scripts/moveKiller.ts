@@ -1,13 +1,13 @@
 import smartKiller from './smartKiller';
 import turnCounter from './turnCounter';
 
-const killer = document.querySelector('#killer') as HTMLDivElement;
-
 export default function moveKiller(
   killerPosition: number[],
   playerPosition: number[],
   killerType: string,
 ): number[] {
+  const killer = document.querySelector('#killer') as HTMLDivElement;
+  
   const move = smartKiller(killerPosition, playerPosition);
   killer.parentElement?.removeChild(killer);
   document.querySelector(`.r${move[0]}${move[1]}`)?.appendChild(killer);
@@ -15,7 +15,7 @@ export default function moveKiller(
   // The Ghost fades in and out every other turn
   if (killerType === 'ghost') {
     if (turnCounter.turn % 2 !== 0) {
-      killer.style.display = ' none';
+      killer.style.display = 'none';
     } else killer.style.display = 'block';
   }
   // The Vampire takes two moves every 5th turn

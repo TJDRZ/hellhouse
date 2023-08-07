@@ -1,16 +1,16 @@
 import createEscapeRoom from './createEscapeRoom';
 import processTurn from './processTurn';
 
-const house = document.querySelector('#house') as HTMLDivElement;
-const killer = document.querySelector('#killer') as HTMLDivElement;
-const player = document.querySelector('#player') as HTMLDivElement;
-
 export default function createHouse(
   mapSize: number,
   killerType: string,
   killerPosition: number[],
   playerPosition: number[],
-) {
+  ) {
+  const house = document.querySelector('#house') as HTMLDivElement;
+  const killer = document.querySelector('#killer') as HTMLDivElement;
+  const player = document.querySelector('#player') as HTMLDivElement;
+
   const killerRowStart = 0;
   const killerColumnStart = Math.floor(mapSize / 2);
   const playerRowStart = mapSize - 1;
@@ -39,7 +39,7 @@ export default function createHouse(
           killerPosition,
           killerType,
           escapeRoom.position,
-          );
+        );
       });
       house.append(room);
       if (room.classList.contains(`r${killerRowStart}${killerColumnStart}`)) {
